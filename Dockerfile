@@ -4,5 +4,9 @@ FROM ubuntu:14.04
 RUN apt-get update
 RUN apt-get install -y wget
 
+# Add start script
+ADD start.sh /start.sh
+RUN chmod +x /start.sh
+
 # Run configuration
-ENTRYPOINT ["wget", "-r", "-nd", "--delete-after", "--wait=1", "--header=X-Refresh-Cache:true"]
+ENTRYPOINT ["/start.sh"]
